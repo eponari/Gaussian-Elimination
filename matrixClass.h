@@ -47,6 +47,16 @@ class matrix{
     
     void make_pivot(int pos){
       double div=matrix_values[pos][pos];
+      //if we don't have a pivot in this row, select another row that we can make pivot.
+      if(div==0){
+        for(int i=pos+1;i<matrix_values.size()+1;i++){
+          if(matrix_values[i][pos]!=0){
+            swap(matrix_values[i],matrix_values[pos]);
+            make_pivot(pos);
+            return;
+          }
+        }  
+      }
       for(int i=pos;i<matrix_values.size()+1;i++){
         matrix_values[pos][i]=double(matrix_values[pos][i])/div;
       }
